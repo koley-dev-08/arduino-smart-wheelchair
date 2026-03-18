@@ -8,17 +8,19 @@
 // The TinyGPS++ object
 TinyGPSPlus gps;
 
-#define echoPin A15 // attach pin D2 Arduino to pin Echo of HC-SR04
-#define trigPin A14 // attach pin D3 Arduino to pin Trig of HC-SR04                                          \
+#define echoPin A15  // attach pin A15 Arduino to pin Echo of HC-SR04
+#define trigPin A14  // attach pin A14 Arduino to pin Trig of HC-SR04                                          \
 
-#define buzzer A7
+#define buzzer A7  //attach to buzzer
 
+//gps module
 String lati = "";
 String longi = "";
 
 long duration;
 int distance;
 
+//accelerometer
 MPU6050 mpu;
 int16_t ax, ay, az;
 int16_t gx, gy, gz;
@@ -31,7 +33,7 @@ struct MyData {
 
 MyData data;
 
-
+//keypad module
 const byte ROWS = 4;  //four rows
 const byte COLS = 4;  //four columns
 
@@ -42,12 +44,13 @@ char keys[ROWS][COLS] = {
   { '*', '0', '#', 'D' }
 };
 
-byte colPins[COLS] = { A3, A4, 8, 9 };      //connect to the row pinouts of the keypad
-byte rowPins[ROWS] = { 10, 11, 12, 34 };  //connect to the column pinouts of the keypad
+byte colPins[COLS] = { 31, 32, 33, 34 };  //connect to the row pinouts of the keypad
+byte rowPins[ROWS] = { 9, 10, 11, 12 };  //connect to the column pinouts of the keypad
 
 //Create an object of keypad
 Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);
 
+//motor inputs
 int motor1pin1 = 36;
 int motor1pin2 = 38;
 
@@ -60,10 +63,10 @@ int motor3pin2 = 50;
 int motor4pin1 = 48;
 int motor4pin2 = 46;
 
-int EN1 = 7;
-int EN2 = 6;
-
-int EN3 = 45;
+//control motor speed
+int EN1 = 7;  
+int EN2 = 6;  
+int EN3 = 8;  
 
 
 int xVal = 340;
@@ -73,6 +76,7 @@ int yPin = A2;
 
 int mode;
 
+//gsm module
 #define rxPin 2
 #define txPin 3
 SoftwareSerial sim800L(rxPin,txPin); 
